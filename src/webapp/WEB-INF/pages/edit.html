@@ -15,10 +15,10 @@
     <div class="row">
         <div class="col">
             <!--/*@thymesVar id="user" type="web.model.User"*/-->
-            <form th:method="patch" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+            <form th:method="patch" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
                 <div class="form-group">
-                    <label for="firstName">Enter name:</label>
-                    <input type="text" th:class="form-control" th:field="*{firstName}" id="firstName" required>
+                    <label for="name">Enter name:</label>
+                    <input type="text" th:class="form-control" th:field="*{name}" id="name" required>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Enter lastname:</label>
@@ -28,8 +28,21 @@
                     <label for="email">Enter email:</label>
                     <input type="text" th:class="form-control" th:field="*{email}" id="email" required>
                 </div>
+                <div class="form-group">
+                    <label for="email">Enter password:</label>
+                    <input type="password" th:class="form-control" th:field="*{password}" id="password" required>
+                </div>
+                <div class="form-group form-check" th:each="role : ${allRoles}">
+                    <input type="checkbox" th:class="form-check-input" name="roless" th:value="${role.getRole()}" th:id="${role.getRole()}">
+                    <label th:class="form-check-label" th:for="${role.getRole()}" th:text="${role.getRole()}"></label>
+                </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a th:href="@{/logout}" type="button" class="btn btn-outline-danger">Logout</a>
         </div>
     </div>
 </div>

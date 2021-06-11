@@ -10,12 +10,14 @@
     <title>User</title>
 </head>
 <body>
-
 <div class="container">
     <div class="row">
         <div class="col">
             <!--/*@thymesVar id="user" type="web.model.User"*/-->
-            <p th:text="${user.getName() + ' - ' + user.getLastName() + ' - ' + user.getEmail()}"></p>
+            <p th:text="${user.getId() + ' - ' + user.getName() + ' - ' + user.getLastName() + ' - ' + user.getEmail() + ' - ' + user.getPassword()}"></p><a th:href="@{/admin/{id}/edit(id=${user.getId()})}">Edit user</a>
+            <form th:method="delete" th:action="@{/admin/{id}(id=${user.getId()})}">
+                <input type="submit" value="Delete user">
+            </form>
         </div>
     </div>
     <div class="row">
